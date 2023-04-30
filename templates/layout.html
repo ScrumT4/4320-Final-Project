@@ -1,0 +1,27 @@
+<div class="formwrapper">
+    <ul class="pageBar">
+      <li class="pagetype"><a href="">Home</a></li>
+      <li class="pagetype"><a href="admin">Admin</a></li>
+      <li class="pagetype"><a href="reservations">Reservations</a></li>
+    </ul>
+    <br>
+    <br>
+    <h2 class="title">Trip Reservation System</h2>
+    <p>Select to login as an admin or make a reservation.</p>
+    <form method="POST" action="/">
+        {{ form.csrf_token }}
+        <div class="form-field">{{ form.option.label }} {{ form.option }}
+          {% if form.option.errors %}
+            <ul class="errors">
+              {% for error in form.option.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        
+        {{ form.submit }}
+    </form>
+  
+  </div>
+  {% endblock %}

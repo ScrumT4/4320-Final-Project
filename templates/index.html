@@ -1,0 +1,47 @@
+<div class="formwrapper">
+  <ul class="pageBar">
+    <li class="pagetype"><a href="../">Home</a></li>
+    <li class="pagetype"><a href="admin">Admin</a></li>
+    <li class="pagetype"><a href="reservations">Reservations</a></li>
+  </ul>
+  <br>
+  <br>
+  <h2 class="title">Admin Login</h2>
+  {% if err %}
+        <p>{{ err }}</p>
+  {% endif %}  
+  {% if chart %}
+      <h3>Seating Chart</h3>
+      <code>
+        {% for row in chart %}
+          {{row}}<br>
+        {% endfor %}
+      </code>
+  {% endif%}
+  {% if sales %}
+    <p>Total Sales: {{total_sales}}</p>
+  {% endif %}
+  <form method="POST" action="/admin">
+      {{ form.csrf_token }}
+      <div class="form-field">{{ form.username.label }} {{ form.username }}
+        {% if form.username.errors %}
+          <ul class="errors">
+            {% for error in form.username.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="form-field">{{ form.password.label }} {{ form.password }}
+        {% if form.password.errors %}
+          <ul class="errors">
+            {% for error in form.password.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      
+      {{ form.login }}
+  </form>  
+</div>
