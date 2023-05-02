@@ -25,12 +25,38 @@ def user_options():
 
 @app.route("/admin", methods=['GET', 'POST'])
 def admin():
-    form = SignForm()
-    return render_template("admin.html", form = form)
+    if request.method == 'POST':
+        username = request.form['user_name']
+        password = request.form['password']
+        if not username:
+            flash("Must input Username")
+        elif not password:
+            flash("Must input Password")
+        else:
+           if username == "admin1" and password == "12345" or username == "admin2" and password == "24680" or username == "admin3" and password == "98765":
+               return render_template("adminpage.html")
+           else:
+               flash("Login not authourized. please enter valid credentials")
+    
+    return render_template("admin.html")
+    
 
 @app.route("/reservation", methods=['GET', 'POST'])
 def reservations():
-    form = SeatForm()
-    return render_template("reservation.html", form = form)
+    if request.method == 'POST':
+      firstname = request.form['firstname']
+      lastname = request.form['lastname']
+      row = request.form['row']
+      seat= request.form['seat']
+
+      if not firstname:
+        flash('Firstname is required!')
+      elif not lastname:
+        flash('Lastname is required!')
+      elif not row:
+        flash('Row is required!')
+      elif not seat:
+        flash('Seat is required!')
+    return render_template("reservation.html")
 
 app.run(host="0.0.0.0")

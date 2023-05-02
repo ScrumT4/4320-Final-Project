@@ -14,6 +14,11 @@
   <br>
   <br>
   <h2 class="title">Reserve Your Seat</h2>
+  <div class="content">
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+  </div>
   {% if err %}
         <p>{{ err }}</p>
   {% endif %}
@@ -31,45 +36,40 @@
   {% endif %}
   <br>
   <form method="POST" action="/reservation">
-      {{ form.csrf_token }}
-      <div class="form-field">{{ form.first_name.label }} {{ form.first_name }}
-        {% if form.first_name.errors %}
-          <ul class="errors">
-            {% for error in form.first_name.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="form-field">{{ form.last_name.label }} {{ form.last_name }}
-        {% if form.last_name.errors %}
-          <ul class="errors">
-            {% for error in form.last_name.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="form-field">{{ form.row.label }} {{ form.row }}
-        {% if form.row.errors %}
-          <ul class="errors">
-            {% for error in form.row.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="form-field">{{ form.seat.label }} {{ form.seat }}
-        {% if form.seat.errors %}
-          <ul class="errors">
-            {% for error in form.seat.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      {{ form.reserve }}
-      <input type="submit" value="Sign In">
+    <br>
+    <label for="firstname">Firstname</label>
+    <input id="firstname" name="firstname"></input>
+    <br>
+    <label for="lastname">Lastname</label>
+    <input id="lastname" name="lastname"></input>
+    <br>
+    <label for="row">Row</label>
+        <select id="row" name="row">
+            <option value="">Select a Row</option>
+            <option value="0">1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="5">6</option>
+            <option value="6">7</option>
+            <option value="7">8</option>
+            <option value="8">9</option>
+            <option value="9">10</option>
+            <option value="10">11</option>
+            <option value="11">12</option>
+        </select>
+    <br>
+    <label for="seat">Seat</label>
+     <select id="seat" name="seat">
+          <option value="">Select a Seat</option>
+          <option value="0">Seat 1: $100</option>
+          <option value="1">Seat 2: $75</option>
+          <option value="2">Seat 3: $50</option>
+          <option value="3">Seat 4: $100</option>
+      </select>
+      <br>
+    <input type="submit" value="Sign In">
   </form>
 </div>
 {% endblock %}

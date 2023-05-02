@@ -9,45 +9,22 @@
   <br>
   <br>
   <h2 class="title">Admin Login</h2>
-  {% if err %}
-        <p>{{ err }}</p>
-  {% endif %}  
-  {% if chart %}
-      <h3>Seating Chart</h3>
-      <code>
-        {% for row in chart %}
-          {{row}}<br>
-        {% endfor %}
-      </code>
-  {% endif%}
-  {% if sales %}
-    <p>Total Sales: {{total_sales}}</p>
-  {% endif %}
-  <form method="POST" action="/admin">
-      {{ form.csrf_token }}
-      <div class="form-field">{{ form.username.label }} {{ form.username }}
-        {% if form.username.errors %}
-          <ul class="errors">
-            {% for error in form.username.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="form-field">{{ form.password.label }} {{ form.password }}
-        {% if form.password.errors %}
-          <ul class="errors">
-            {% for error in form.password.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      
-      {{ form.login }}
-      <p>
-        <input type="submit" value="Sign In">
-      </p>
+  <div class="content">
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    {% block content %} {% endblock %}
+  </div>
+  <form method="post">
+    <br>
+        <label for="user_name">Username</label>
+        <input id="user_name" name="user_name"></input>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" name="password"></input>
+        <br>
+        <button type="submit">Sign In</button>
   </form>  
 </div>
 </html>
