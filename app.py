@@ -56,7 +56,7 @@ def admin():
 
 
 @app.route("/reservations", methods=['GET', 'POST'])
-def rerservations():
+def reservations():
 
     form = ReservationForm()
     chart = generate_seating_chart()
