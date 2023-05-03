@@ -1,5 +1,5 @@
 #Use an official python runtime
-FROM python:3.11-slim-buster
+FROM python:3.8-slim-buster
 
 #Set the working directory
 WORKDIR /app
